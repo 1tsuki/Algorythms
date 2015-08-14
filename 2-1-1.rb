@@ -1,13 +1,22 @@
 ####################
 # main code block
 ####################
+def solve
+  result = dfs(0, 0)
+  puts result ? "YES" : "NO"
+end
+
 def dfs(i, sum)
+  # return if all calculated
   return sum == @k if i == @n
 
+  # case didn't use index i
   return true if dfs(i + 1, sum)
 
+  # case used index i
   return true if dfs(i + 1, sum + @a[i])
 
+  # false if didn't match
   return false
 end
 
@@ -21,6 +30,21 @@ if __FILE__ == $0
       @a[index] = gets.chomp.to_i
     end
     @k = gets.chomp.to_i
-    result = dfs(0, 0)
-    puts result ? "YES" : "NO"
+    solve
 end
+
+
+####################
+# sample input
+####################
+# 4
+# 1
+# 2
+# 4
+# 7
+# 13
+
+####################
+# expected output
+####################
+# YES

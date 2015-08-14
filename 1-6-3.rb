@@ -1,15 +1,16 @@
 ####################
 # main code block
 ####################
-def solve(m, k)
-  @m = m
-  @sorted_k = k.sort
-
+def solve
+  # restrict target index by using binary search
   for i in 0..@sorted_k.length-1 do
-    for j in 0..get_max_index(m-@sorted_k[i], 0, @sorted_k.length) do
-      for k in 0..get_max_index(m-@sorted_k[i]-@sorted_k[j], 0, @sorted_k.length) do
-        for l in 0..get_max_index(m-@sorted_k[i]-@sorted_k[j]-@sorted_k[k], 0, @sorted_k.length) do
-          if is_m?(i, j, k, l) then
+    max_after_i = @m - @sorted_k[i]
+    for j in 0..get_max_index(max_after_i, 0, @sorted_k.length) do
+      max_after_j = max_after_i - @sorted_k[j]
+      for k in 0..get_max_index(max_after_j, 0, @sorted_k.length) do
+        max_after_k = max_after_j - @sorted_k[j]
+        for l in 0..get_max_index(max_after_k, 0, @sorted_k.length) do
+          if max_after_k - @sorted_k[l] == 0 then
             puts "YES"
             return
           end
@@ -35,19 +36,32 @@ def get_max_index(target, min_index, max_index)
   end
 end
 
-def is_m?(i,j,k,l)
-  return (@sorted_k[i] + @sorted_k[j] + @sorted_k[k] + @sorted_k[l]) == @m
-end
 
 ####################
 # code block for local testing
 ####################
 if __FILE__ == $0
-    n = gets.chomp.to_i
-    m = gets.chomp.to_i
-    k = []
-    for index in 1..n do
-      k[index-1] = gets.chomp.to_i
+    @n = gets.chomp.to_i
+    @m = gets.chomp.to_i
+    @k = []
+    for i in 0..@n-1 do
+      @k[i] = gets.chomp.to_i
     end
-    solve(m, k)
+    @sorted_k = @k.sort
+    solve
 end
+
+
+####################
+# sample input
+####################
+# 3
+# 10
+# 1
+# 3
+# 5
+
+####################
+# expected output
+####################
+# YES
