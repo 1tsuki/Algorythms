@@ -14,6 +14,13 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require "rubygems"
+require "bundler/setup"
+require 'rspec'
+require 'active_support'
+require 'active_support/core_ext/kernel/reporting'
+Dir[File.join(File.dirname(__FILE__), "../src/*.rb")].each { |f| require f }
+
 RSpec.configure do |config|
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
