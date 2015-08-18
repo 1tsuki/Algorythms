@@ -37,17 +37,3 @@ if __FILE__ == $0
   solver = Solver_2_3_2.new(n, m, s, t)
   solver.solve
 end
-
-
-####################
-# sample input
-####################
-# 4
-# 4
-# abcd
-# becd
-
-####################
-# expected output
-####################
-# 3
